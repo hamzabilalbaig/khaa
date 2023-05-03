@@ -37,8 +37,8 @@ const gpt3= async (text) => {
 
 
 app.post('/bolo', function (req, res) {
-console.log(req.body.text);
-    gpt3(req.body);
+console.log(req.body);
+    gpt3(req.body.text);
 })
 
 
