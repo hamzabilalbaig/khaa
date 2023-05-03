@@ -20,9 +20,6 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 
-
-
-
 const gpt3= async (text) => {
     try {
     const completion = await openai.createCompletion({
