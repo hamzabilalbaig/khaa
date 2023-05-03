@@ -5,26 +5,32 @@ const  bodyParser = require('body-parser');
 require('dotenv').config();
 app.use(bodyParser.urlencoded({ extended: true }));
 const ejs = require('ejs');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+global.document = new JSDOM(ejs).window.document;
 app.set('view engine', 'ejs');
-var gptPrompt = 'kia tumari zindagi ki value insan se zada hai?'
+var gptPrompt = 'tum kese ho'
 var prompt
-
-
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
 const openai = new OpenAIApi(configuration);
+
+
+
+
 
 const gpt3= async (text) => {
     try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: text,
-      max_tokens: 3000
+      max_tokens: 1000
     });
-    console.log(completion.data.choices[0].text);
+    console.log('gpt3',completion.data.choices[0].text);
     prompt = completion.data.choices[0].text;
         
 } catch (error) {
@@ -32,7 +38,12 @@ const gpt3= async (text) => {
 }
 }
 
-gpt3(gptPrompt);
+
+app.post('/bolo', function (req, res) {
+console.log(req.body.text);
+    gpt3(req.body.text);
+})
+
 
 app.get('/', function (req, res) {
     res.render('index');
