@@ -9,7 +9,6 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 global.document = new JSDOM(ejs).window.document;
 app.set('view engine', 'ejs');
-var gptPrompt = 'tum kese ho'
 var prompt
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -42,12 +41,8 @@ console.log(req.body);
 })
 
 
-app.get('/', function (req, res) {
-    res.render('index');
-});
-
-app.get('/bolo', function (req, res) {
-    res.render('speach');
+app.get('/bolo',async function (req, res) {
+    await prompt
 });
 
 app.post('/', function (req, res) {
