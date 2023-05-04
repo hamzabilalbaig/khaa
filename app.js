@@ -36,9 +36,9 @@ const gpt3= async (text) => {
 }
 
 
-app.post('/bolo', function (req, res) {
+app.post('/bolo',async function (req, res) {
 console.log(req.body);
-    gpt3(req.body.text);
+    await gpt3(req.body.text);
 })
 
 
