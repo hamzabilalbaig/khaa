@@ -65,9 +65,9 @@ app.post('/', function (req, res) {
         res.download(path); 
     })
 })
-
-app.listen(3000, function () {
-    console.log('listening on port 3000!');
+const port = process.env.PORT || 5025;
+app.listen(port, function () {
+    console.log('listening on port',port);
 //   console.log('Open url to hear Hallelujah http://localhost:3000/hear?lang=en&text=meralunpakarabrar');
 });
 
