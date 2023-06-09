@@ -34,7 +34,7 @@ const gpt3 = async (text) => {
 
 app.post("/bolo", async function (req, res) {
   console.log(req.body);
-  await gpt3("kia hal hain");
+  await gpt3(req.body.text);
 });
 
 app.get("/bolo", async function (req, res) {
