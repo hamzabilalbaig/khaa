@@ -27,14 +27,17 @@ const gpt3 = async (text) => {
     });
     console.log("gpt3", completion.data.choices[0].text);
     prompt = completion.data.choices[0].text;
+    return prompt;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
 app.post("/bolo", async function (req, res) {
   console.log(req.body);
-  await gpt3(req.body.text);
+  const res = await gpt3(req.body.text);
+  res.status(200).json({ res });
 });
 
 app.get("/bolo", async function (req, res) {
